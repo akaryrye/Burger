@@ -1,0 +1,27 @@
+{
+  "name": "burger",
+  "version": "1.0.0",
+  "description": "a burger app",
+  "main": "server.js",
+  "dependencies": {
+    "express": "^4.17.1",
+    "express-handlebars": "^3.1.0",
+    "mysql2": "^1.7.0",
+    "sequelize": "^5.18.4"
+  },
+  "devDependencies": {},
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "node server.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/akaryrye/Burger.git"
+  },
+  "author": "Ryan K Alldrin",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/akaryrye/Burger/issues"
+  },
+  "homepage": "https://github.com/akaryrye/Burger#readme"
+}
