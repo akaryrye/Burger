@@ -1,11 +1,22 @@
-<h1>Content goes here</h1>
+<h1>My Burger App</h1><br>
 
+<h3>Burgers Available</h3>
 <ul>
     {{#each burgers}}
-        {{> burger }}
+        {{#unless devoured}}
+            {{> burger }}
+        {{/unless}}
     {{/each}}
 </ul>
 
+<h3>Devoured Burgers</h3>
+<ul>
+    {{#each burgers}}
+        {{#if devoured}}
+            {{> burger }}
+        {{/if}}
+    {{/each}}
+</ul>
 <div>
     <input id="name" type="text" placeholder="name"/>
     <br>
