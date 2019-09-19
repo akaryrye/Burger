@@ -1,13 +1,14 @@
 var Sequelize = require("sequelize");
 var sequelize = require("../config/connection.js");
 
-var Table = sequelize.define("table", {
-  title: Sequelize.STRING,
-  author: Sequelize.STRING
+var Burger = sequelize.define("burger", {
+  name: Sequelize.STRING,
+  description: Sequelize.STRING,
+  devoured: {type: Sequelize.BOOLEAN, allowNull: false, defaultValue: false},
 }, {
     freezeTableName: true
 });
 
-Table.sync();
+Burger.sync();
 
-module.exports = Table;
+module.exports = Burger;
