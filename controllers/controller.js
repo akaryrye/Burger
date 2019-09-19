@@ -19,4 +19,16 @@ router.post("/api/create", function (req, res) {
   });
 });
 
+router.put("/api/devour/:id", function (req, res) {
+  var burgr = req.params.id;
+  Burger.update({
+    devoured: true
+  }, {
+    where: {id : burgr}
+  }).then(function (result) {
+    console.log(`Burger ${result} has been devoured`)
+  });
+  
+});
+
 module.exports = router;
