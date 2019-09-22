@@ -33,11 +33,11 @@ router.put("/api/devour/:id", function (req, res) {
   });
 
   // Update description
-  router.put("/api/update/:id", function (req, res) {
+  router.post("/api/update", function (req, res) {
     Burger.update({
       description: req.body.description
     }, {
-      where: {id : req.params.id}
+      where: {id : req.body.id}
     }).then( function(result) {
       console.log(`Burger toppings updated: ${result}`);
       res.render("index", {burgers : result});

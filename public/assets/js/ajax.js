@@ -29,18 +29,22 @@ $(".devour-burger").on("click", function(e) {
 });
 
 $(".update-burger").on("click", function(e) {
-    e.preventDefault;
-    var input = $(`#update${$(this).data("id")}`);
+    e.preventDefault();
+    var input = $("#update" + $(this).data("id"));
     var id = $(this).data("id");
-
-    $.ajax(`/api/update/${id}`, {
-        type: "PUT",
-        data: {description: input.val().trim()}
-    }).then(function (data) {
-        console.log(data);
+    console.log(input.val().trim());
+    $.ajax({
+        url: "/api/update/",
+        type: "POST",
+        data: {
+            description: input.val().trim(),
+            id: id
+        }
+    })/* .then(function() {
         input.val("");
         location.reload();
-    });
+        console.log("success");
+    }); */
 });
 
 $(".delete-burger").on("click", function(e) {
