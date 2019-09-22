@@ -31,20 +31,17 @@ $(".devour-burger").on("click", function(e) {
 $(".update-burger").on("click", function(e) {
     e.preventDefault();
     var input = $("#update" + $(this).data("id"));
-    var id = $(this).data("id");
-    console.log(input.val().trim());
-    $.ajax({
-        url: "/api/update/",
-        type: "POST",
-        data: {
-            description: input.val().trim(),
-            id: id
-        }
-    })/* .then(function() {
-        input.val("");
+    var data = {
+        id: $(this).data("id"),
+        description: input.val().trim()
+    }
+    console.log(data.description);
+
+    $.post("/api/update/", data)
+    .then(function(data) {
+        console.log(data);
         location.reload();
-        console.log("success");
-    }); */
+    });
 });
 
 $(".delete-burger").on("click", function(e) {
