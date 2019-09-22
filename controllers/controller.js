@@ -1,61 +1,60 @@
-var express = require("express");
-var router = express.Router();
-var Burger = require("../models/model.js");
+var db = require("../models");
 
-// Render index page
-router.get("/", function(req, res) {
-    Burger.findAll({}).then( 
-      function (result) {
-        res.render("index", {burgers : result});
-      });
-});
+module.exports = function(app) {
 
-// Create new burger
-router.post("/api/create", function (req, res) {
-  Burger.create({
-    name: req.body.name,
-    description: req.body.description
-  }).then( function (result) {
-    res.render("index", {burgers : result});
-  });
-});
-
-// Update Burger (devoured: false => true)
-router.put("/api/devour/:id", function (req, res) {
-  //var burgerId = req.params.id;
-  Burger.update({
-    devoured: true
-  }, {
-    where: {id : req.params.id}
-  }).then(function (result) {
-    console.log(`Burger ${result} has been devoured`);
-    res.render("index", {burgers : result});
+  // Render index page
+  app.get("/", function(req, res) {
+      db.Burger.findAll({}).then( 
+        function (result) {
+          res.render("index", {burgers : result});
+        });
   });
 
-  // Update description
-  router.post("/api/update", function (req, res) {
-    Burger.update({
+  // Create new burger
+  app.post("/api/create", function (req, res) {
+    db.Burger.create({
+      name: req.body.name,
       description: req.body.description
-    }, {
-      where: {id : req.body.id}
-    }).then( function(result) {
-      console.log(`Burger toppings updated: ${result}`);
+    }).then( function (result) {
       res.render("index", {burgers : result});
     });
   });
 
-  // Delete record(s) matching the passed in id
-  router.delete("/api/delete-burger/:id", function (req, res) {
-    var burgerId = req.params.id;
-    Burger.destroy({
-      where: {id: burgerId}
-    }).then(
-      function(result) {
-        console.log(result);
+  // Update Burger (devoured: false => true)
+  app.put("/api/devour/:id", function (req, res) {
+    //var burgerId = req.params.id;
+    db.Burger.update({
+      devoured: true
+    }, {
+      where: {id : req.params.id}
+    }).then(function (result) {
+      console.log(`Burger ${result} has been devoured`);
+      res.render("index", {burgers : result});
+    });
+
+    // Update description
+    app.post("/api/update", function (req, res) {
+      db.Burger.update({
+        description: req.body.description
+      }, {
+        where: {id : req.body.id}
+      }).then( function(result) {
+        console.log(`Burger toppings updated: ${result}`);
         res.render("index", {burgers : result});
       });
+    });
+
+    // Delete record(s) matching the passed in id
+    app.delete("/api/delete-burger/:id", function (req, res) {
+      var burgerId = req.params.id;
+      db.Burger.destroy({
+        where: {id: burgerId}
+      }).then(
+        function(result) {
+          console.log(result);
+          res.render("index", {burgers : result});
+        });
+    });
+
   });
-
-});
-
-module.exports = router;
+};
