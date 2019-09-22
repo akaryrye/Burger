@@ -2,9 +2,20 @@
     <div class="burger">
         <h4>{{name}}</h4>
         <p>{{description}}</p>
-        <input id="update{{this.id}}" type="text" placeholder="update toppings"/>
-        <button class="update-burger" type="submit" data-id="{{this.id}}">Update Toppings</button>
-        <button class="devour-burger" data-id="{{this.id}}">Devour Me</button>
-        <button class="delete-burger" data-id="{{this.id}}">Delete Me</button>
+        
+        {{#unless devoured}}
+            <button class="devour-burger" data-id="{{this.id}}">
+                Devour Burger
+            </button>
+            <button class="update-burger" type="submit" data-id="{{this.id}}">
+                Update Burger
+            </button>
+            <input id="update{{this.id}}" type="text" placeholder="Enter New Ingredients"/>
+        {{/unless}}
+        {{#if devoured}}
+            <button class="delete-burger" data-id="{{this.id}}">
+                Clean Up the Mess
+            </button>
+        {{/if}}
     </div>
 </li>

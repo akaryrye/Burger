@@ -22,23 +22,22 @@ router.post("/api/create", function (req, res) {
 
 // Update Burger (devoured: false => true)
 router.put("/api/devour/:id", function (req, res) {
-  var burgerId = req.params.id;
+  //var burgerId = req.params.id;
   Burger.update({
     devoured: true
   }, {
-    where: {id : burgerId}
+    where: {id : req.params.id}
   }).then(function (result) {
     console.log(`Burger ${result} has been devoured`);
     res.render("index", {burgers : result});
   });
 
   // Update description
-  router.post("/api/toppings", function (req, res) {
+  router.put("/api/update/:id", function (req, res) {
     Burger.update({
-      name: req.body.name,
       description: req.body.description
     }, {
-      where: {id : req.body.id}
+      where: {id : req.params.id}
     }).then( function(result) {
       console.log(`Burger toppings updated: ${result}`);
       res.render("index", {burgers : result});

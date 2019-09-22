@@ -6,12 +6,12 @@ $("#submit").on("click", function (e) {
     };
 
     $.post("/api/create", newBurger)
-        .then( function (data) {
-            console.log(data);
-            $("#name").val("");
-            $("#description").val("");
-            location.reload();
-        });
+     .then( function (data) {
+        console.log(data);
+        $("#name").val("");
+        $("#description").val("");
+        location.reload();
+    });
 });
 
 $(".devour-burger").on("click", function(e) {
@@ -28,13 +28,20 @@ $(".devour-burger").on("click", function(e) {
     });
 });
 
-/* $(".update-burger").on("click", function(e) {
+$(".update-burger").on("click", function(e) {
     e.preventDefault;
-    var updateBurger = {
-        id: $(this).data("id"),
-        description: 
-    }
-}); */
+    var input = $(`#update${$(this).data("id")}`);
+    var id = $(this).data("id");
+
+    $.ajax(`/api/update/${id}`, {
+        type: "PUT",
+        data: {description: input.val().trim()}
+    }).then(function (data) {
+        console.log(data);
+        input.val("");
+        location.reload();
+    });
+});
 
 $(".delete-burger").on("click", function(e) {
     e.preventDefault();
