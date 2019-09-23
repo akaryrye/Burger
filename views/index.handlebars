@@ -1,21 +1,30 @@
-<h1>My Burger App</h1><br>
+{{> nav }}
 
 {{> form }}
 
-<h3>Burgers Available</h3>
-<ul>
-    {{#each burgers}}
-        {{#unless devoured}}
-            {{> burger }}
-        {{/unless}}
-    {{/each}}
-</ul>
+<div class="row">
+    <div class="col s12 m6">
+        <h4 class="subtitle black-text center-align">Burgers Available</h3>
+        <ul>
+            {{#each burgers}}
+                {{#unless devoured}}
+                    {{> burger }}
+                    <br>
+                {{/unless}}
+            {{/each}}
+        </ul>
+    </div>
+    <div class="col s12 m6">
+        <h4 class="subtitle black-text center-align">Devoured Burgers</h3>
+        <ul>
+            {{#each burgers}}
+                {{#if devoured}}
+                    {{> burger }}
+                    <br>
+                {{/if}}
+            {{/each}}
+        </ul> 
+    </div>
+</div>
 
-<h3>Devoured Burgers</h3>
-<ul>
-    {{#each burgers}}
-        {{#if devoured}}
-            {{> burger }}
-        {{/if}}
-    {{/each}}
-</ul>
+{{> footer }}

@@ -1,21 +1,31 @@
-<li>
-    <div class="burger">
-        <h4>{{name}}</h4>
-        <p>{{description}}</p>
-        
-        {{#unless devoured}}
-            <button class="devour-burger" data-id="{{this.id}}">
-                Devour Burger
-            </button>
-            <button class="update-burger" type="submit" data-id="{{this.id}}">
-                Update Burger {{this.id}}
-            </button>
-            <input id="update{{this.id}}" type="text" placeholder="Enter New Ingredients"/>
-        {{/unless}}
-        {{#if devoured}}
-            <button class="delete-burger" data-id="{{this.id}}">
-                Clean Up the Mess
-            </button>
-        {{/if}}
+
+
+<li class="burger">
+    <div class="card amber accent-3">
+        <div class="card-content black-text">
+            <span class="card-title deep-orange-text text-darken-4">{{name}}</span>
+            <p  class="deep-orange-text text-darken-4">{{description}}</p>
+        </div>
+        <div class="card-action">
+            {{#unless devoured}}
+                <a class="devour-burger waves-effect waves-light btn-small light-green black-text" data-id="{{this.id}}">
+                    Devour
+                </a>
+                <a class="delete-burger waves-effect waves-light btn-small light-green black-text" data-id="{{this.id}}">
+                    Throw Away
+                </a>
+                <br><br>
+                <p>Update Your Burger's Description:</p>
+                <input class="black-text" id="update{{this.id}}" type="text"/>
+                <a class="update-burger waves-effect waves-light btn-small light-green black-text" data-id="{{this.id}}">
+                    Update
+                </a>
+            {{/unless}}
+            {{#if devoured}}
+                <a class="delete-burger waves-effect waves-light btn-small light-green black-text" data-id="{{this.id}}">
+                    Clean Up
+                </a>
+            {{/if}} 
+        </div>
     </div>
 </li>
