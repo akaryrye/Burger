@@ -1,7 +1,7 @@
 # Burger
 Just another burger app
 
-![image](burger.jpg)
+![image](burgers.jpg)
 
 Thank you and I hope you enjoyed this app!
 
