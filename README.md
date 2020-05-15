@@ -1,4 +1,4 @@
-# Burger
+# Burger Builder
 
 #### How To Use:
 Click `"Create A Burger"` and type in the name and description for your burger.  You will see your burger on the left and you can choose to either edit it, or "devour" (delete) it.  This app was created to practice communicating with a database, SQL in this case, and features an Express based server hosted on Heroku.
